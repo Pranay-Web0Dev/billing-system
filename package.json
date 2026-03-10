@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "cloudinary": "^2.6.0"
+  },
+ "scripts": {
+  "start": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm run dev\""
+}
+
+}
