@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const ConnectDB = async() =>{
     try {
-        await mongoose.connect("mongodb://127.0.0.1:27017/BillingDB").then(()=>{
+        await mongoose.connect("mongodb+srv://TradeX:cOUYxgkJmgflEkp9@tradexcluster.j5vbglc.mongodb.net/billingdb?appName=TradeXCluster").then(()=>{
             console.log("COnnected To The Database SuccessFully")
         })
     } catch (error) {
