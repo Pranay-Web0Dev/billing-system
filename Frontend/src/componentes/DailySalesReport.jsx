@@ -166,7 +166,7 @@ const DailySalesReport = () => {
 
     const showCompanyDate = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/company/get', { method: "GET" });
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/company/get', { method: "GET" });
             const result = await response.json();
             setCompanyData(result);
         } catch (error) {
@@ -188,7 +188,7 @@ const DailySalesReport = () => {
 
     const ShowAllorders = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/order/getall", {
+            const response = await fetch("https://billing-system-sno9.onrender.com/api/order/getall", {
                 method: "GET"
             });
             const result = await response.json();
@@ -307,9 +307,9 @@ const DailySalesReport = () => {
         <>
             <Navbar />
 
-                    <PDFViewer style={{ width: '90vw', height: '98vh', backgroundColor: "black" }}>
-                        {generateInvoice()}
-                    </PDFViewer>
+            <PDFViewer style={{ width: '90vw', height: '98vh', backgroundColor: "black" }}>
+                {generateInvoice()}
+            </PDFViewer>
         </>
     );
 };

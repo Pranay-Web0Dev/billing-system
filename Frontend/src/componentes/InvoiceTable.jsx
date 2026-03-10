@@ -16,7 +16,7 @@ const InvoiceTable = () => {
 
   const ShowAllorders = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/order/getall", {
+      const response = await fetch("https://billing-system-sno9.onrender.com/api/order/getall", {
         method: "GET"
       })
       const result = await response.json()

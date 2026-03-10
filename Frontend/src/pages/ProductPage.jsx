@@ -72,8 +72,8 @@ function ProductPage() {
 
     const stopScanning = () => {
         if (isQuaggaStarted) {
-            Quagga.offDetected(handleBarcodeDetected); 
-            Quagga.stop(); 
+            Quagga.offDetected(handleBarcodeDetected);
+            Quagga.stop();
             setIsQuaggaStarted(false);
             setScanning(false);
         }
@@ -82,7 +82,7 @@ function ProductPage() {
     // Ensure Quagga stops on unmount to release camera resources
     useEffect(() => {
         return () => {
-            stopScanning(); 
+            stopScanning();
         };
     }, []);
 
@@ -103,7 +103,7 @@ function ProductPage() {
 
     const showAllproducts = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/product/getall", {
+            const response = await fetch("https://billing-system-sno9.onrender.com/api/product/getall", {
                 method: "GET",
                 headers: {
                     'Content-type': 'application/json',
@@ -147,7 +147,7 @@ function ProductPage() {
     const handleAddProduct = async (e) => {
         e.preventDefault()
         try {
-            const response = await fetch("http://localhost:5000/api/product/add", {
+            const response = await fetch("https://billing-system-sno9.onrender.com/api/product/add", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
@@ -174,7 +174,7 @@ function ProductPage() {
                     title: 'error',
                     text: `Error Occured Try agian`,
                     icon: 'error'
-                    })
+                })
 
             }
         } catch (error) {
@@ -202,7 +202,7 @@ function ProductPage() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/product/delete/${id}`, {
+                    const response = await fetch(`https://billing-system-sno9.onrender.com/api/product/delete/${id}`, {
                         method: "DELETE"
                     });
                     if (response.ok) {
@@ -254,7 +254,7 @@ function ProductPage() {
     const handleUpdate = async (e, id) => {
         // e.preventDefault()
         try {
-            const response = await fetch(`http://localhost:5000/api/product/update/${currentProduct._id}`, {
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/product/update/${currentProduct._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json"

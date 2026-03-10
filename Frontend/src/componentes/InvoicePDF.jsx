@@ -188,7 +188,7 @@ const InvoicePDF = () => {
 
     const showCompanyDate = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/company/get', { method: "GET" });
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/company/get', { method: "GET" });
             const result = await response.json();
             setCompanyData(result);
         } catch (error) {
@@ -203,7 +203,7 @@ const InvoicePDF = () => {
     const { id } = useParams();
     const showOrder = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/order/getbyid/${id}`, { method: "GET" });
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/getbyid/${id}`, { method: "GET" });
             const result = await response.json();
             setOrderData(result);
             setProduct(result.products);
@@ -227,7 +227,7 @@ const InvoicePDF = () => {
 
     const ShowAllorders = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/order/getall", {
+            const response = await fetch("https://billing-system-sno9.onrender.com/api/order/getall", {
                 method: "GET"
             });
             const result = await response.json();
@@ -256,7 +256,7 @@ const InvoicePDF = () => {
 
     const showCustomerById = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/customer/findByid/${customerId}`, {
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/customer/findByid/${customerId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json"
@@ -363,7 +363,7 @@ const InvoicePDF = () => {
                             <View style={styles.cash}>
                                 <Text style={styles.total_amount}>Previous Balance:</Text>
                                 <Text style={styles.price}>{customerDetails.AccountBalance - TotalAmount}.00</Text>
-                                {/* { customerDetails.AccountBalance === 0 ? 2200 : (customerDetails.AccountBalance - TotalAmount) }.00 */} 
+                                {/* { customerDetails.AccountBalance === 0 ? 2200 : (customerDetails.AccountBalance - TotalAmount) }.00 */}
                             </View>
                             <View style={styles.cash}>
                                 <Text style={styles.total_amount}>Total Balance:</Text>

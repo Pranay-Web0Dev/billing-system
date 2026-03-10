@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000', // your backend server if needed
+        target: 'https://billing-system-sno9.onrender.com', // your backend server if needed
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       },

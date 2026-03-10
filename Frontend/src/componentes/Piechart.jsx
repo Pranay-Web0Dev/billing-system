@@ -22,7 +22,7 @@ const Piechart = () => {
   useEffect(() => {
     const countCustomers = async () => {
       try {
-        const getCustomers = await fetch("http://localhost:5000/api/customer/countall");
+        const getCustomers = await fetch("https://billing-system-sno9.onrender.com/api/customer/countall");
         const result = await getCustomers.json();
         setCounts(prevCounts => ({ ...prevCounts, customers: result }));
       } catch (error) {
@@ -32,7 +32,7 @@ const Piechart = () => {
 
     const countProducts = async () => {
       try {
-        const countAllProducts = await fetch("http://localhost:5000/api/product/countall");
+        const countAllProducts = await fetch("https://billing-system-sno9.onrender.com/api/product/countall");
         const result = await countAllProducts.json();
         setCounts(prevCounts => ({ ...prevCounts, products: result }));
       } catch (error) {
@@ -47,7 +47,7 @@ const Piechart = () => {
   const data = [
     { name: 'Customer', value: counts.customers },
     { name: 'Products', value: counts.products },
-    { name: 'Purchases', value:4},
+    { name: 'Purchases', value: 4 },
     { name: 'Sales', value: 3 },
   ];
 

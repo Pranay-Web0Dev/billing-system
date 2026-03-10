@@ -31,7 +31,7 @@ const Invoices = () => {
 
   const ShowAllorders = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/order/getall", {
+      const response = await fetch("https://billing-system-sno9.onrender.com/api/order/getall", {
         method: "GET"
       });
       const result = await response.json();
@@ -64,7 +64,7 @@ const Invoices = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          const response = await fetch(`http://localhost:5000/api/order/deletebyid/${id}`, {
+          const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/deletebyid/${id}`, {
             method: "DELETE"
           });
           if (response.ok) {
@@ -121,21 +121,21 @@ const Invoices = () => {
 
                 <th>
                   {/* <div className="dropdown-container"> */}
-                    {/* <h2>Sort By Value</h2> */}
-                    <select
-                      value={selectedSort}
-                      onChange={handleSortChange}
-                      className="dropdown-select"
-                      style={{
-                        width: "100%",
-                        border: 'none',
-                        backgroundColor: 'transparent'
-                      }}
-                    >
-                      {/* <option value="" disabled>Select Sort Order</option> */}
-                      <option value="new">New</option>
-                      <option value="old">Old</option>
-                    </select>
+                  {/* <h2>Sort By Value</h2> */}
+                  <select
+                    value={selectedSort}
+                    onChange={handleSortChange}
+                    className="dropdown-select"
+                    style={{
+                      width: "100%",
+                      border: 'none',
+                      backgroundColor: 'transparent'
+                    }}
+                  >
+                    {/* <option value="" disabled>Select Sort Order</option> */}
+                    <option value="new">New</option>
+                    <option value="old">Old</option>
+                  </select>
                   {/* </div> */}
                 </th>
 

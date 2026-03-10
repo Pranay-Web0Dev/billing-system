@@ -69,7 +69,7 @@ const InvoiceOrder = () => {
 
   const fetchProductData = async (barcode) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/product/get/${barcode}`);
+      const response = await fetch(`https://billing-system-sno9.onrender.com/api/product/get/${barcode}`);
       const productData = await response.json();
 
       if (productData && productData._id) {
@@ -143,7 +143,7 @@ const InvoiceOrder = () => {
   const getAllcustomer = async (e) => {
     // e.preventDefault()
     try {
-      const getCustomers = await fetch("http://localhost:5000/api/customer/getall", {
+      const getCustomers = await fetch("https://billing-system-sno9.onrender.com/api/customer/getall", {
         method: "GET"
       })
       const result = await getCustomers.json()
@@ -160,7 +160,7 @@ const InvoiceOrder = () => {
 
   const showAllproducts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/product/getall", {
+      const response = await fetch("https://billing-system-sno9.onrender.com/api/product/getall", {
         method: "GET"
       })
       const result = await response.json()
@@ -179,7 +179,7 @@ const InvoiceOrder = () => {
   const [tableData, setTableData] = useState([]);
   const handleAddToTable = (e) => {
     e.preventDefault()
-    if (!customerID  || !quantity || !price) {
+    if (!customerID || !quantity || !price) {
       toast.error('Please Enter All The Data');
       return;
     }
@@ -225,7 +225,7 @@ const InvoiceOrder = () => {
         paid: paid,
       };
 
-      const response = await fetch('http://localhost:5000/api/order/add', {
+      const response = await fetch('https://billing-system-sno9.onrender.com/api/order/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -285,7 +285,7 @@ const InvoiceOrder = () => {
                   throw new Error('Not enough stock available');
                 }
               } else {
-                const response = await fetch(`http://localhost:5000/api/product/update/${data.productId}`, {
+                const response = await fetch(`https://billing-system-sno9.onrender.com/api/product/update/${data.productId}`, {
                   method: "PUT",
                   headers: {
                     "Content-type": "application/json"
@@ -303,14 +303,14 @@ const InvoiceOrder = () => {
         );
 
         // Update customer balance
-        const customerResponse = await fetch(`http://localhost:5000/api/customer/findByid/${customerID}`);
+        const customerResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/findByid/${customerID}`);
         if (customerResponse.ok) {
           const customerData = await customerResponse.json();
           const currentBalance = customerData.AccountBalance;
 
           const newBalance = currentBalance + totalCost;
 
-          const updateBalanceResponse = await fetch(`http://localhost:5000/api/customer/updatebyid/${customerID}`, {
+          const updateBalanceResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/updatebyid/${customerID}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -354,7 +354,7 @@ const InvoiceOrder = () => {
 
   const showOrders = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/order/getall', {
+      const response = await fetch('https://billing-system-sno9.onrender.com/api/order/getall', {
         method: 'GET', // Corrected method definition
         headers: {
           'Content-type': 'application/json',
@@ -390,7 +390,7 @@ const InvoiceOrder = () => {
 
   const fetchOrderData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/order/getbyid/${id}`);
+      const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/getbyid/${id}`);
       if (!response.ok) {
         throw new Error('Failed to fetch order data');
       }
@@ -430,7 +430,7 @@ const InvoiceOrder = () => {
   //   };
 
   //   try {
-  //     const response = await fetch(`http://localhost:5000/api/order/updateorder/${id}`, {
+  //     const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/updateorder/${id}`, {
   //       method: "PUT",
   //       headers: {
   //         "Content-Type": "application/json",
@@ -496,7 +496,7 @@ const InvoiceOrder = () => {
       }
 
       // Fetch the existing order to get the previous total cost
-      const existingOrderResponse = await fetch(`http://localhost:5000/api/order/getbyid/${id}`);
+      const existingOrderResponse = await fetch(`https://billing-system-sno9.onrender.com/api/order/getbyid/${id}`);
       if (!existingOrderResponse.ok) {
         throw new Error('Failed to fetch existing order data');
       }
@@ -507,7 +507,7 @@ const InvoiceOrder = () => {
       }, 0);
 
       // Update the order
-      const response = await fetch(`http://localhost:5000/api/order/updateorder/${id}`, {
+      const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/updateorder/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -525,7 +525,7 @@ const InvoiceOrder = () => {
         }, 0);
 
         // ...........................................................
-        const customerResponse = await fetch(`http://localhost:5000/api/customer/findByid/${customerID}`);
+        const customerResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/findByid/${customerID}`);
         if (customerResponse.ok) {
           const customerData = await customerResponse.json();
           const currentBalance = customerData.AccountBalance;
@@ -534,7 +534,7 @@ const InvoiceOrder = () => {
           const adjustedBalance = currentBalance - previousTotalCost + newTotalCost;
 
           // ............................................................
-          const updateBalanceResponse = await fetch(`http://localhost:5000/api/customer/updatebyid/${customerID}`, {
+          const updateBalanceResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/updatebyid/${customerID}`, {
             method: 'PUT',
             headers: {
               'Content-Type': 'application/json',
@@ -567,7 +567,7 @@ const InvoiceOrder = () => {
       <section id="Invoice_home">
         <form action="">
           <div className="fields">
-           
+
             {/* <!-- <label for="">PLACE ORDER</label> --> */}
             <select name="Select CUSTOMER" id="productSelect" onChange={(e) => setCustomerID(e.target.value)}>
               <option value="">CUSTOMERS</option>
@@ -577,17 +577,17 @@ const InvoiceOrder = () => {
             </select>
             {/* ----------- THE NEW PRODUCT METHOD ---------------- */}
             {
-              selectedProduct.productName ? 
-              <input type="text" name="" id="" value={ selectedProduct.productName} />
-           :
-              <>
-            <select name="Select Product" id="productSelect" onChange={(e) => setItem(e.target.value)}>
-              <option value="">PRODUCTS</option>
-              {products.map(product => (
-                <option key={product._id} value={`${product._id}`}>{product.productName}</option>
-              ))}
-            </select>
-            </>
+              selectedProduct.productName ?
+                <input type="text" name="" id="" value={selectedProduct.productName} />
+                :
+                <>
+                  <select name="Select Product" id="productSelect" onChange={(e) => setItem(e.target.value)}>
+                    <option value="">PRODUCTS</option>
+                    {products.map(product => (
+                      <option key={product._id} value={`${product._id}`}>{product.productName}</option>
+                    ))}
+                  </select>
+                </>
             }
             <input type="Number" placeholder="Quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)} />
             <input type="Number" placeholder="Price" value={price} onChange={(e) => setPrice(e.target.value)} />

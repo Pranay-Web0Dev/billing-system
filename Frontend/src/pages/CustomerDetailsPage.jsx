@@ -21,7 +21,7 @@ function CustomerDetailsPage() {
 
     const getUserByID = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/customer/findByid/${id}`, {
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/customer/findByid/${id}`, {
                 method: "GET"
             })
             const result = await response.json()
@@ -46,7 +46,7 @@ function CustomerDetailsPage() {
 
     const ShowAllorders = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/order/getall", {
+            const response = await fetch("https://billing-system-sno9.onrender.com/api/order/getall", {
                 method: "GET"
             });
             const result = await response.json();
@@ -78,7 +78,7 @@ function CustomerDetailsPage() {
 
     const showAllPayments = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/order/all-payments', {
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/order/all-payments', {
                 method: "GET"
             })
             const result = await response.json()
@@ -118,7 +118,7 @@ function CustomerDetailsPage() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/order/delete-payment/${id}`, {
+                    const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/delete-payment/${id}`, {
                         method: "DELETE"
                     });
                     if (response.ok) {

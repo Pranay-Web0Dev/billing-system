@@ -22,7 +22,7 @@ const Order2 = () => {
   const [products, setProducts] = useState([])
   const showAllproducts = async (req, res) => {
     try {
-      const response = await fetch("http://localhost:5000/api/product/getall", {
+      const response = await fetch("https://billing-system-sno9.onrender.com/api/product/getall", {
         method: "GET"
       })
       const result = await response.json()
@@ -60,7 +60,7 @@ const Order2 = () => {
     setUnit('')
   };
 
-  
+
 
   return (
     <>
@@ -104,7 +104,7 @@ const Order2 = () => {
             <div className="order_btns">
               {/* <button >Updat/e</button> */}
               <button type="button"
-               onClick={handleAddToTable}
+                onClick={handleAddToTable}
               >Add</button>
               {/* <a href='/order'>
               Customer
@@ -150,7 +150,7 @@ const Order2 = () => {
                   <td>{data.quantity} </td>
                   <td>{data.price} </td>
                   <td>{data.unit ? data.unit : "others"}</td>
-                  <td 
+                  <td
                   // onClick={handleDelete} 
                   ><XCircle size={16} /></td>
                 </tr>

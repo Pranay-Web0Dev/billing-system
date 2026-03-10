@@ -31,7 +31,7 @@ function TemorderPage() {
     const getAllcustomer = async (e) => {
         // e.preventDefault()
         try {
-            const getCustomers = await fetch("http://localhost:5000/api/customer/getall", {
+            const getCustomers = await fetch("https://billing-system-sno9.onrender.com/api/customer/getall", {
                 method: "GET"
             })
             const result = await getCustomers.json()
@@ -48,7 +48,7 @@ function TemorderPage() {
     const [products, setProducts] = useState([])
     const showAllproducts = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/product/getall", {
+            const response = await fetch("https://billing-system-sno9.onrender.com/api/product/getall", {
                 method: "GET"
             })
             const result = await response.json()
@@ -111,7 +111,7 @@ function TemorderPage() {
                 payment,
             };
 
-            const response = await fetch('http://localhost:5000/api/order/temp', {
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/order/temp', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -145,7 +145,7 @@ function TemorderPage() {
                                 toast.error('Not enough stock available for ' + Name);
                                 throw new Error('Not enough stock available');
                             } else {
-                                const response = await fetch(`http://localhost:5000/api/product/update/${data.productId}`, {
+                                const response = await fetch(`https://billing-system-sno9.onrender.com/api/product/update/${data.productId}`, {
                                     method: "PUT",
                                     headers: {
                                         "Content-type": "application/json"
@@ -189,7 +189,7 @@ function TemorderPage() {
 
     const showOrders = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/order/getall', {
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/order/getall', {
                 method: 'GET', // Corrected method definition
                 headers: {
                     'Content-type': 'application/json',
@@ -225,7 +225,7 @@ function TemorderPage() {
 
     const fetchOrderData = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/order/getby-id/${id}`);
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/getby-id/${id}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch order data');
             }
@@ -265,7 +265,7 @@ function TemorderPage() {
         };
 
         try {
-            const response = await fetch(`http://localhost:5000/api/order/update-temp/${id}`, {
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/update-temp/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -285,7 +285,7 @@ function TemorderPage() {
         }
     };
 
- 
+
 
     return (
         <>

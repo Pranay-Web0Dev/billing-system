@@ -180,7 +180,7 @@ function TempInvoicePage() {
 
     const showCompanyDate = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/company/get', { method: "GET" });
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/company/get', { method: "GET" });
             const result = await response.json();
             setCompanyData(result);
         } catch (error) {
@@ -195,7 +195,7 @@ function TempInvoicePage() {
     const { id } = useParams();
     const showOrder = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/order/getby-id/${id}`, { method: "GET" });
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/getby-id/${id}`, { method: "GET" });
             const result = await response.json();
             setOrderData(result);
             setPayment(result.payment)
@@ -229,7 +229,7 @@ function TempInvoicePage() {
                     <View style={styles.section}>
                         <View style={styles.container}>
                             <View>
-                            {companyData.length > 0 && companyData[0].logo && (
+                                {companyData.length > 0 && companyData[0].logo && (
                                     <Image source={{ uri: companyData[0].logo }} style={styles.logo} />
                                 )}
                             </View>

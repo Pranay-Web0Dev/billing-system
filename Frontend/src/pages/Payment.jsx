@@ -22,7 +22,7 @@ function Payment() {
 
     const getAllCustomers = async () => {
         try {
-            const getCustomers = await fetch("http://localhost:5000/api/customer/getall", {
+            const getCustomers = await fetch("https://billing-system-sno9.onrender.com/api/customer/getall", {
                 method: "GET"
             });
             const result = await getCustomers.json();
@@ -66,7 +66,7 @@ function Payment() {
 
         try {
             // Adding Payment
-            const paymentResponse = await fetch('http://localhost:5000/api/order/add-payment', {
+            const paymentResponse = await fetch('https://billing-system-sno9.onrender.com/api/order/add-payment', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ function Payment() {
             });
 
             // Fetching Customer Data
-            const customerResponse = await fetch(`http://localhost:5000/api/customer/findByid/${customerId}`);
+            const customerResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/findByid/${customerId}`);
             if (!customerResponse.ok) {
                 throw new Error('Failed to fetch customer data');
             }
@@ -101,7 +101,7 @@ function Payment() {
             const newBalance = currentBalance - Number(amount);
 
             // Updating Customer Balance
-            const updateBalanceResponse = await fetch(`http://localhost:5000/api/customer/updatebyid/${customerId}`, {
+            const updateBalanceResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/updatebyid/${customerId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -141,7 +141,7 @@ function Payment() {
 
     const getPaymentById = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/order/find-payment/${id}`, {
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/find-payment/${id}`, {
                 method: "GET"
             })
             const result = await response.json()
@@ -171,7 +171,7 @@ function Payment() {
     //         method: paymentMethod
     //     };
     //     try {
-    //         const response = await fetch(`http://localhost:5000/api/order/update-payment/${id}`, {
+    //         const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/update-payment/${id}`, {
     //             method: "PUT",
     //             headers: {
     //                 'Content-type': "application/json"
@@ -191,70 +191,70 @@ function Payment() {
 
     const handleUpdate = async () => {
         const paymentDetails = {
-          name: customerId,
-          balance,
-          date,
-          amount,
-          method: paymentMethod
+            name: customerId,
+            balance,
+            date,
+            amount,
+            method: paymentMethod
         };
-      
+
         try {
-          // Fetch the existing payment details for  previous amount
-          const existingPaymentResponse = await fetch(`http://localhost:5000/api/order/find-payment/${id}`);
-          if (!existingPaymentResponse.ok) {
-            throw new Error('Failed to fetch existing payment data');
-          }
-          const existingPayment = await existingPaymentResponse.json();
-      
-          const previousAmount = existingPayment.amount;
-      
-          // Calculate the new balance by adding the previous payment amount and subtracting  the new payment amount
-          const response = await fetch(`http://localhost:5000/api/order/update-payment/${id}`, {
-            method: "PUT",
-            headers: {
-              'Content-type': "application/json"
-            },
-            body: JSON.stringify(paymentDetails)
-          });
-          const result = await response.json();
-      
-          if (response.ok) {
-            // Fetch current customer balance
-            const customerResponse = await fetch(`http://localhost:5000/api/customer/findByid/${customerId}`);
-            if (customerResponse.ok) {
-              const customerData = await customerResponse.json();
-              const currentBalance = customerData.AccountBalance;
-      
-              // Adjust the customer balance
-              const adjustedBalance = Number(currentBalance) + Number(previousAmount) - Number(amount);
-      
-              // Update customer balance
-              const updateBalanceResponse = await fetch(`http://localhost:5000/api/customer/updatebyid/${customerId}`, {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                  AccountBalance: adjustedBalance,
-                }),
-              });
-      
-              if (!updateBalanceResponse.ok) {
-                throw new Error('Failed to update customer balance');
-              }
-            } else {
-              throw new Error('Failed to fetch customer data');
+            // Fetch the existing payment details for  previous amount
+            const existingPaymentResponse = await fetch(`https://billing-system-sno9.onrender.com/api/order/find-payment/${id}`);
+            if (!existingPaymentResponse.ok) {
+                throw new Error('Failed to fetch existing payment data');
             }
-      
-            setUpdated(result);
-            navigate(`/customer-details/${result.name}`);
-          }
+            const existingPayment = await existingPaymentResponse.json();
+
+            const previousAmount = existingPayment.amount;
+
+            // Calculate the new balance by adding the previous payment amount and subtracting  the new payment amount
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/update-payment/${id}`, {
+                method: "PUT",
+                headers: {
+                    'Content-type': "application/json"
+                },
+                body: JSON.stringify(paymentDetails)
+            });
+            const result = await response.json();
+
+            if (response.ok) {
+                // Fetch current customer balance
+                const customerResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/findByid/${customerId}`);
+                if (customerResponse.ok) {
+                    const customerData = await customerResponse.json();
+                    const currentBalance = customerData.AccountBalance;
+
+                    // Adjust the customer balance
+                    const adjustedBalance = Number(currentBalance) + Number(previousAmount) - Number(amount);
+
+                    // Update customer balance
+                    const updateBalanceResponse = await fetch(`https://billing-system-sno9.onrender.com/api/customer/updatebyid/${customerId}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            AccountBalance: adjustedBalance,
+                        }),
+                    });
+
+                    if (!updateBalanceResponse.ok) {
+                        throw new Error('Failed to update customer balance');
+                    }
+                } else {
+                    throw new Error('Failed to fetch customer data');
+                }
+
+                setUpdated(result);
+                navigate(`/customer-details/${result.name}`);
+            }
         } catch (error) {
-          alert('Failed to update');
-          console.log("Can't update the payment", error);
+            alert('Failed to update');
+            console.log("Can't update the payment", error);
         }
-      };
-      
+    };
+
     return (
         <>
             <Navbar />

@@ -7,84 +7,84 @@ import Swal from 'sweetalert2'
 
 function TempInvoiceDisplayPage() {
 
-    const [orders, setOrders] = useState([])
-    const [price, setPrice] = useState('')
-    const [search, setSearch] = useState("")
-    const [time, setTime] = useState([])
-  
-    // console.log(orders)
-    const ShowAllorders = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/api/order/get-all", {
-          method: "GET"
-        });
-        const result = await response.json();
+  const [orders, setOrders] = useState([])
+  const [price, setPrice] = useState('')
+  const [search, setSearch] = useState("")
+  const [time, setTime] = useState([])
 
-        const filteredOrders = result.filter(order =>
-          order && order.name && 
-          (search ? order.name.toLowerCase().includes(search.toLowerCase()) : true)
-        );
-    
-        setOrders(filteredOrders);
-        setTime(result);
-      } catch (error) {
-        console.log("Fetching Orders Error", error);
-      }
-    };
-    
-    useEffect(() => {
-      ShowAllorders();
-    }, [search]);
-    
-  
-    const handleDelete = async (id) => {
-      Swal.fire({
-        title: 'Are you sure?',
-        text: 'You are about to delete this order',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, delete it!',
-        cancelButtonText: 'No, keep it'
-      }).then(async (result) => {
-        if (result.isConfirmed) {
-          try {
-            const response = await fetch(`http://localhost:5000/api/order/delete-temp/${id}`, {
-              method: "DELETE"
+  // console.log(orders)
+  const ShowAllorders = async () => {
+    try {
+      const response = await fetch("https://billing-system-sno9.onrender.com/api/order/get-all", {
+        method: "GET"
+      });
+      const result = await response.json();
+
+      const filteredOrders = result.filter(order =>
+        order && order.name &&
+        (search ? order.name.toLowerCase().includes(search.toLowerCase()) : true)
+      );
+
+      setOrders(filteredOrders);
+      setTime(result);
+    } catch (error) {
+      console.log("Fetching Orders Error", error);
+    }
+  };
+
+  useEffect(() => {
+    ShowAllorders();
+  }, [search]);
+
+
+  const handleDelete = async (id) => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You are about to delete this order',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, keep it'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(`https://billing-system-sno9.onrender.com/api/order/delete-temp/${id}`, {
+            method: "DELETE"
+          });
+          if (response.ok) {
+            ShowAllorders();
+            Swal.fire({
+              title: 'Success!',
+              text: 'Order deleted successfully',
+              icon: 'success',
+              confirmButtonText: 'Cool'
             });
-            if (response.ok) {
-              ShowAllorders();
-              Swal.fire({
-                title: 'Success!',
-                text: 'Order deleted successfully',
-                icon: 'success',
-                confirmButtonText: 'Cool'
-              });
-            } else {
-              Swal.fire({
-                title: 'Error!',
-                text: 'Failed to delete order',
-                icon: 'error',
-                confirmButtonText: 'OK'
-              });
-            }
-          } catch (error) {
-            console.error('Error:', error);
+          } else {
             Swal.fire({
               title: 'Error!',
-              text: 'An error occurred while deleting the order',
+              text: 'Failed to delete order',
               icon: 'error',
               confirmButtonText: 'OK'
             });
           }
+        } catch (error) {
+          console.error('Error:', error);
+          Swal.fire({
+            title: 'Error!',
+            text: 'An error occurred while deleting the order',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          });
         }
-      });
-  
-    };
+      }
+    });
+
+  };
 
   return (
     <>
-    <Navbar/>
-    <section id="invoice">
+      <Navbar />
+      <section id="invoice">
         {/* <h1 style={{ textAlign: "center" }}>ALL INVOICES</h1> */}
         {/* <>INVOICES</> */}
         <div className="btns">
@@ -96,7 +96,7 @@ function TempInvoiceDisplayPage() {
           </Link>
         </div>
         <div className="invoice_table">
-          <table  width="100%">
+          <table width="100%">
             <thead>
               <tr>
                 <th>No</th>

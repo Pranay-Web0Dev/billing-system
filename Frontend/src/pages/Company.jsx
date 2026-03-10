@@ -32,7 +32,7 @@ const Company = () => {
 
         try {
             await toast.promise(
-                fetch("http://localhost:5000/api/company/add", {
+                fetch("https://billing-system-sno9.onrender.com/api/company/add", {
                     method: "POST",
                     body: formData
                 }).then(response => {
@@ -61,7 +61,7 @@ const Company = () => {
 
     const showAllDetails = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/company/get', {
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/company/get', {
                 method: 'GET',
                 headers: {
                     'Content-type': 'application/json',
@@ -112,7 +112,7 @@ const Company = () => {
 
         try {
             await toast.promise(
-                fetch(`http://localhost:5000/api/company/update/${id}`, {
+                fetch(`https://billing-system-sno9.onrender.com/api/company/update/${id}`, {
                     method: "PUT",
                     body: formData
                 }).then(response => {

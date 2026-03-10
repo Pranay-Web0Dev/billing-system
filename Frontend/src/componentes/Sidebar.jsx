@@ -15,7 +15,7 @@ const Sidebar = () => {
   const [productCounts, setProductCount] = useState(null)
   const countCustomers = async () => {
     try {
-      const getCustomers = await fetch("http://localhost:5000/api/customer/countall", {
+      const getCustomers = await fetch("https://billing-system-sno9.onrender.com/api/customer/countall", {
         method: "GET"
       });
       const result = await getCustomers.json();
@@ -30,7 +30,7 @@ const Sidebar = () => {
   }, [])
   const countProducts = async () => {
     try {
-      const countAllproducts = await fetch("http://localhost:5000/api/product/countall", {
+      const countAllproducts = await fetch("https://billing-system-sno9.onrender.com/api/product/countall", {
         method: "GET"
       });
       const result = await countAllproducts.json();
@@ -50,7 +50,7 @@ const Sidebar = () => {
   const getAllcustomer = async (e) => {
     // e.preventDefault()
     try {
-      const getCustomers = await fetch("http://localhost:5000/api/customer/getall", {
+      const getCustomers = await fetch("https://billing-system-sno9.onrender.com/api/customer/getall", {
         method: "GET"
       })
       const result = await getCustomers.json()
@@ -72,7 +72,7 @@ const Sidebar = () => {
   const [totalPurchase, setTotalPurchase] = useState("")
   const showAllproducts = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/product/getall", {
+      const response = await fetch("https://billing-system-sno9.onrender.com/api/product/getall", {
         method: "GET"
       })
       const result = await response.json()
@@ -107,7 +107,7 @@ const Sidebar = () => {
 
   const showOrders = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/order/getall', {
+      const response = await fetch('https://billing-system-sno9.onrender.com/api/order/getall', {
         method: 'GET', // Corrected method definition
         headers: {
           'Content-type': 'application/json',
@@ -138,7 +138,7 @@ const Sidebar = () => {
       const today = new Date().toISOString().split('T')[0];
       const TodaySales = result.filter(item => new Date(item.createdAt).toISOString().split('T')[0] === today);
       setTodaySales(TodaySales);
-      
+
     } catch (error) {
       // console.error('Error sending data:', error);
       toast.error('An error occurred while sending data');

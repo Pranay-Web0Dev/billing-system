@@ -28,7 +28,7 @@ function CustomerPage() {
     const HandleaddCustomer = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/api/customer/create", {
+            const response = await fetch("https://billing-system-sno9.onrender.com/api/customer/create", {
                 method: "POST",
                 headers: {
                     "Content-type": "application/json"
@@ -71,7 +71,7 @@ function CustomerPage() {
     const getAllcustomer = async (e) => {
         // e.preventDefault()
         try {
-            const getCustomers = await fetch("http://localhost:5000/api/customer/getall", {
+            const getCustomers = await fetch("https://billing-system-sno9.onrender.com/api/customer/getall", {
                 method: "GET"
             })
             const result = await getCustomers.json()
@@ -102,7 +102,7 @@ function CustomerPage() {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/customer/deletebyid/${id}`, {
+                    const response = await fetch(`https://billing-system-sno9.onrender.com/api/customer/deletebyid/${id}`, {
                         method: "DELETE"
                     });
                     if (response.ok) {
@@ -149,7 +149,7 @@ function CustomerPage() {
     const handleUpdate = async (e, id) => {
         // e.preventDefault();
         try {
-            const response = await fetch(`http://localhost:5000/api/customer/updatebyid/${currentCustomer._id}`, {
+            const response = await fetch(`https://billing-system-sno9.onrender.com/api/customer/updatebyid/${currentCustomer._id}`, {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json"
@@ -201,7 +201,7 @@ function CustomerPage() {
 
     const showOrders = async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/order/getall', {
+            const response = await fetch('https://billing-system-sno9.onrender.com/api/order/getall', {
                 method: 'GET',
                 headers: {
                     'Content-type': 'application/json',
